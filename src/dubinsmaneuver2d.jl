@@ -89,7 +89,7 @@ end
 @inline function _LSL(self, a, b, d, sa, ca, sb, cb) 
     aux = atan(cb - ca, d + sa - sb)
     t = mod2pi(-a + aux)
-    p = sqrt(2 + d^2 - 2*cos(a-b) + 2*d*(sa-sb))
+    p = sqrt(2 + d^2 - 2*cos(a-b) + 2*d*(sa-sb) + 1e-14)
     q = mod2pi(b - aux)
     length = (t+p+q) * self.rhomin        
     case = "LSL"
@@ -100,7 +100,7 @@ end
 @inline function _RSR(self, a, b, d, sa, ca, sb, cb) 
     aux = atan(ca-cb, d-sa+sb)         
     t = mod2pi(a - aux)
-    p = sqrt(2 + d^2 - 2*cos(a-b) + 2*d*(sb-sa))
+    p = sqrt(2 + d^2 - 2*cos(a-b) + 2*d*(sb-sa) + 1e-14)
     q = mod2pi(mod2pi(-b) + aux)   
     length = (t+p+q) * self.rhomin        
     case = "RSR"
